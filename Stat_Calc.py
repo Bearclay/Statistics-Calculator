@@ -63,8 +63,7 @@ elif option_lower == "median":
 # Calculates range if user requests range        
 elif option_lower == "range":
     # sorted_lst_range = lst_of_num.sort() 
-    lst_of_num.sort() 
-    print(lst_of_num)        
+    lst_of_num.sort()      
     max_var = lst_of_num[-1]
     min_var = lst_of_num[0]
     data_range = float(max_var) - float(min_var)
