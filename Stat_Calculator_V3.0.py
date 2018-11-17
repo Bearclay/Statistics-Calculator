@@ -11,12 +11,15 @@ Created on Mon Mar  5 21:16:04 2018
 @author: Robert Barclay
 """
 """
-    This a simple calculator designed to calculate the mean, median, range, mode, or standard deviation. It prompts the user to enter in data one by one, 
-    then it asks for what the user wants to calculate. It then calculate the method specified by the user. 
+    This a simple calculator designed to calculate the mean, median, range, mode, or standard deviation. 
+    It prompts the user to enter in data one by one, then it asks for what the user wants to calculate. 
+    The program then calculate the method specified by the user. 
     
     Attributes:
-        Calculator class: This class has a method that sums the list passed in which is used by the other two method calc_mean and calc_mode. These methods calculate the mean 
-        and the mode. 
+        Calculator class: This class has a method that sums the list passed in which is used by the other 
+        4 methods calc_mean, calc_median, standard_deviation, calc_range and calc_mode. These methods calculate 
+        the mean, the median, the standard deviation, the range and the mode base on the numbers provided by the 
+        user.
         
 """
 class Calculator:
@@ -56,38 +59,38 @@ class Calculator:
             return median
 
     def calc_mode(self):
-        # Creates new list to store values if there is more than one of them in the data
-        self.poss_mode = []
-        # Sorts given list
-        self.a_lst.sort()
-        # For loop that compares the first item in the list to every item throughout
-        for fnum, snum in zip(self.a_lst, self.a_lst[1:]):
-            # If the item is equal to another in the list, it's stored in poss_mode
-            if fnum == snum:
-                self.poss_mode.append(fnum)
-                # Check if one or more iteration of a number in the list. If so, returns first value
-                if len(self.poss_mode) >= 1:
-                    return self.poss_mode[0]
+        dct_of_nums = dict()
+        
+        for num in self.a_lst:
+            if num not in dct_of_nums:
+                dct_of_nums[num] = 1
+            else:
+                dct_of_nums[num] += 1
+        
+        mode = [val for val, key in dct_of_nums.items() if key > 1]
+        return mode
     
     def standard_deviation(self):
         # Empty list for difference values
         diff_lst = []
         # Calculate mean of list
-        #sd_m = Calculator(lst_of_num)
-        sd_mean = self.calc_mean()
+        sd_m = Calculator(self.a_lst)
+        sd_mean = sd_m.calc_mean()
     
         # This goes through user inputed values and subtracts the the mean from
         # each value and then squares it. 
         for num in self.a_lst:
-            result = (float(num) - sd_mean) ** 2.0
+            result = ((float(num) - sd_mean) ** 2.0)
             # Then rounds the result to two digits
             rounded_result = round(result, 2)
             # Add these values to our difference values list
             diff_lst.append(rounded_result)
-            # Here we take the mean of the differences
-            new_sum = self.calc_mean()
-            # Take the square root of that mean and we have our standard deviation
-            standard_dev = (new_sum ** (1/2.0))
+        # Here we take the mean of the differences
+        new_calc = Calculator(diff_lst)
+        new_sum = new_calc.calc_mean()        
+        # Take the square root of that mean and we have our 
+        #standard deviation
+        standard_dev = (new_sum ** (1/2.0))
         return standard_dev
       
     def calc_range(self):
@@ -96,12 +99,12 @@ class Calculator:
         max_var = lst_of_num[-1]
         min_var = lst_of_num[0]
         data_range = float(max_var) - float(min_var)
-        return data_range 
+        return data_range
 
 # An empty list where it adds the user input
 lst_of_num = []     
 
-print("I am data machine, enter data points one by one, then type done. I will calculate mean, median, mode, range and standard deviation. ")
+print("Enter data points one by one, then type done. This calculator will calculate mean, median, mode, range and standard deviation. ")
 
 # The original string is empty, causing the prompt to loop until
 # the user enters 'done'. Stores the input as floats.
@@ -109,31 +112,20 @@ prompt = ""
 while prompt != "done":
     prompt = input("Give me your data: ")
     if str(prompt.strip()) == "done" : break
-    lst_of_num.append(float(prompt))
+    try:
+        lst_of_num.append(float(prompt))
+    except ValueError:
+        print("Please enter an integer or a float.")
+        print()
+
 # Creates Calculator object to be used in rest of program.
 usr_input = Calculator(lst_of_num)
 
-# Takes in user input, makes it all lower case to handle different input
-# regardless of case. 
-option = input("Would you like me to calculate Mean, Median, Range, Mode, or Standard Deviation? \n")
-option_lower = option.lower()
-
-# Calculates mean if user selects mean
-if option_lower == "mean":
-    print("The mean is: " + str(usr_input.calc_mean()))
- 
-# Calculates median if user selects median
-elif option_lower == "median":
-    print("The median is: " + str(usr_input.calc_median()))
-
-# Calculates range if user requests range        
-elif option_lower == "range":
-    print("The range is: " + str(usr_input.calc_range()))
-
-# Calculates standard deviation
-elif option_lower == "standard deviation": 
-    print("The standard deviation is: " + str(usr_input.standard_deviation()))
-
-# Calculates Mode for Data
-elif option_lower == "mode":
-    print("The mode is: " + str(usr_input.calc_mode()))
+print("\n")
+print("You entered {} numbers".format(len(lst_of_num)))
+print("The mean is: {}".format(str(usr_input.calc_mean())))
+print("The median is: {}".format(str(usr_input.calc_median())))
+print("The mode is: {}".format(str(usr_input.calc_mode()).strip("[]")))
+print("The range is: {}".format(str(usr_input.calc_range())))
+print("The standard deviation is: {}".format(str(usr_input.standard_deviation())))
+print("Have a wonderful day!")
