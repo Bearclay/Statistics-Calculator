@@ -113,13 +113,13 @@ if __name__ == '__main__':
 	# An empty list where it adds the user input
 	lst_of_num = []     
 
-	print("Enter data points one by one, then type done. This calculator will calculate mean, median, mode, range and standard deviation. ")
+	print("This calculator will calculate mean, median, mode, range and standard deviation. Enter data points one by one, then type 'done'.")
 
 	# The original string is empty, causing the prompt to loop until
 	# the user enters 'done'. Stores the input as floats.
 	prompt = ""
 	while prompt != "done":
-		prompt = input("Give me your data: ")
+		prompt = input("Enter your data: ")
 		if str(prompt.strip()) == "done" : break
 		try:
 			lst_of_num.append(float(prompt))
