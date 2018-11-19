@@ -18,14 +18,14 @@ Created on Mon Mar  5 21:16:04 2018
 @author: Robert Barclay
 """
 """
-    This a simple calculator designed to calculate the mean, median, range, mode, or standard deviation. 
-    It prompts the user to enter in data one by one, then it asks for what the user wants to calculate. 
-    The program then calculate the method specified by the user. 
+    This a simple calculator that calculates the mean, median, range, mode, and standard deviation. 
+    It prompts the user to enter in their data one by one, then it asks for what the user wants to calculate. 
+    The program then calculates the all five and prints it to the console. 
     
     Attributes:
         Calculator class: This class has a method that sums the list passed in which is used by the other 
-        4 methods calc_mean, calc_median, standard_deviation, calc_range and calc_mode. These methods calculate 
-        the mean, the median, the standard deviation, the range and the mode base on the numbers provided by the 
+        five methods calc_mean, calc_median, standard_deviation, calc_range and calc_mode. These methods calculate 
+        the mean, the median, the standard deviation, the range and the mode based on the numbers provided by the 
         user.
         
 """
@@ -108,31 +108,33 @@ class Calculator:
         data_range = float(max_var) - float(min_var)
         return data_range
 
-# An empty list where it adds the user input
-lst_of_num = []     
 
-print("Enter data points one by one, then type done. This calculator will calculate mean, median, mode, range and standard deviation. ")
+if __name__ == '__main__':
+	# An empty list where it adds the user input
+	lst_of_num = []     
 
-# The original string is empty, causing the prompt to loop until
-# the user enters 'done'. Stores the input as floats.
-prompt = ""
-while prompt != "done":
-    prompt = input("Give me your data: ")
-    if str(prompt.strip()) == "done" : break
-    try:
-        lst_of_num.append(float(prompt))
-    except ValueError:
-        print("Please enter an integer or a float.")
-        print()
+	print("Enter data points one by one, then type done. This calculator will calculate mean, median, mode, range and standard deviation. ")
 
-# Creates Calculator object to be used in rest of program.
-usr_input = Calculator(lst_of_num)
+	# The original string is empty, causing the prompt to loop until
+	# the user enters 'done'. Stores the input as floats.
+	prompt = ""
+	while prompt != "done":
+		prompt = input("Give me your data: ")
+		if str(prompt.strip()) == "done" : break
+		try:
+			lst_of_num.append(float(prompt))
+		except ValueError:
+			print("Please enter an integer or a float.")
+			print()
 
-print("\n")
-print("You entered {} numbers".format(len(lst_of_num)))
-print("The mean is: {}".format(str(usr_input.calc_mean())))
-print("The median is: {}".format(str(usr_input.calc_median())))
-print("The mode is: {}".format(str(usr_input.calc_mode()).strip("[]")))
-print("The range is: {}".format(str(usr_input.calc_range())))
-print("The standard deviation is: {}".format(str(usr_input.standard_deviation())))
-print("Have a wonderful day!")
+	# Creates Calculator object to be used in rest of program.
+	usr_input = Calculator(lst_of_num)
+
+	print("\n")
+	print("You entered {} numbers".format(len(lst_of_num)))
+	print("The mean is: {}".format(str(usr_input.calc_mean())))
+	print("The median is: {}".format(str(usr_input.calc_median())))
+	print("The mode is: {}".format(str(usr_input.calc_mode()).strip("[]")))
+	print("The range is: {}".format(str(usr_input.calc_range())))
+	print("The standard deviation, (sigma) is: {}".format(str(usr_input.standard_deviation())))
+	print("Have a wonderful day!")
