@@ -124,8 +124,7 @@ if __name__ == '__main__':
 		try:
 			lst_of_num.append(float(prompt))
 		except ValueError:
-			print("Please enter an integer or a float.")
-			print()
+			print("Please enter an integer or a decimal.")
 
 	# Creates Calculator object to be used in rest of program.
 	usr_input = Calculator(lst_of_num)
