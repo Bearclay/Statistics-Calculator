@@ -19,7 +19,7 @@ Screenshots:
 This is the message presented to the user when the program is run:
 ![new_um](https://user-images.githubusercontent.com/22042867/48793798-1da78e00-ecc6-11e8-8fe8-660a37d00000.PNG)
 
-This is what it looks like after users enter their data and press enter. We also see the error message presented to the user if they don't enter an integer or float. 
+This is what it looks like after a user enters their data and presses enter. We also see the error message presented to the user if they don't enter an integer or float. 
 ![updated_ude](https://user-images.githubusercontent.com/22042867/48794654-99a2d580-ecc8-11e8-9683-d74ce95633b8.PNG)
 
 
