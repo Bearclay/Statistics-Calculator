@@ -12,13 +12,13 @@ Build Status:
 
 
   Currently it works as advertised, but I am in the process of making the mode method more explicit such as in the case of several numbers that appear many times in a larger dataset input by the user. 
+This is the message presented to the user when the program is run:
 
 Screenshots:
 
-
 This is the message presented to the user when the program is run:
-![usr_mssge](https://user-images.githubusercontent.com/22042867/48682863-5e918c80-eb78-11e8-8e49-4fe97781dd1e.PNG)
-
+![new_um](https://user-images.githubusercontent.com/22042867/48793798-1da78e00-ecc6-11e8-8fe8-660a37d00000.PNG)
 
 This is what it looks like after users enter their data and press enter. We also see the error message presented to the user if they don't enter an integer or float. 
-![usr_data_entry](https://user-images.githubusercontent.com/22042867/48682891-7d901e80-eb78-11e8-8910-cd1309f1e050.PNG)
+![new_new_ude](https://user-images.githubusercontent.com/22042867/48793786-141e2600-ecc6-11e8-9ce8-75f256362e91.PNG)
+
