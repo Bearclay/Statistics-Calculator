@@ -1,26 +1,13 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sat Nov 17 15:44:22 2018
-
-@author: Robert
-"""
-
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Nov 15 20:44:48 2018
-
-@author: Robert
-"""
-
-"""
 Created on Mon Mar  5 21:16:04 2018
 
 @author: Robert Barclay
 """
 """
-    This a simple calculator that calculates the mean, median, range, mode, and standard deviation. 
-    It prompts the user to enter in their data one by one, then it asks for what the user wants to calculate. 
-    The program then calculates the all five and prints it to the console. 
+    This a simple calculator that calculates the mean, median, range, mode, and standard deviation to five
+    decimal points. It prompts the user to enter in their data one by one, then it asks for what the user 
+    wants to calculate. The program then calculates the all five and prints it to the console. 
     
     Attributes:
         Calculator class: This class has a method that sums the list passed in which is used by the other 
@@ -30,63 +17,71 @@ Created on Mon Mar  5 21:16:04 2018
         
 """
 class Calculator:
-    def __init__(self, a_lst):
-        self.a_lst = a_lst
+    def __init__(self, _a_lst):
+        self._a_lst = _a_lst
     
     #A simple function that sums the values in the list. I added this instead of
     #the 'sum' function to practice coding.
     def sum_my_lst(self):
         a_sum = 0.0
-        for item in self.a_lst:
+        for item in self._a_lst:
             a_sum = a_sum + float(item)
         return a_sum
     
     # Another function that will calculate the mean for values in a list
     def calc_mean(self):
         div = self.sum_my_lst()
-        mean = float(div) / (len(self.a_lst))
+        mean = float(div) / (len(self._a_lst))
         return mean
     
     def calc_median(self):        
-        # sorts user input from highest to lowest using ".sort()" function
-        lst_of_num.sort()          
-    
+        # sorts user input from lowest to highest using ".sort()" function
+        lst_of_num.sort()    
         # Calculates median if list is even length
         if len(lst_of_num) % 2 == 0:
-            first_mid = len(lst_of_num) / 2
-            sec_mid = lst_of_num[int(first_mid)]
-            numerator = float(first_mid) + float(sec_mid)
-            median = numerator / len(lst_of_num)
-            return median
+            # Computest the 'middle' of an even list by finding half of the length
+            # and subracting by one due to the zero index nature of lists in Python
+            index = int((len(lst_of_num) - 1) / 2)
+            # Sets variable 
+            first_num = lst_of_num[index]
+            sec_num = lst_of_num[index + 1]
+            lst_sum = float(first_num) + float(sec_num)
+            even_median = lst_sum / 2
+            return even_median
         
         # Calculates median if list is odd length
         else:
-            even_var = (len(lst_of_num) - 1) / 2
-            median = lst_of_num[int(even_var)]
-            return median
+            lst_middle = (len(lst_of_num) - 1) / 2
+            odd_median = lst_of_num[int(lst_middle)]
+            return odd_median
 
     def calc_mode(self):
         dct_of_nums = dict()
-        
-        for num in self.a_lst:
+        for num in self._a_lst:
             if num not in dct_of_nums:
                 dct_of_nums[num] = 1
             else:
                 dct_of_nums[num] += 1
         
-        mode = [val for val, key in dct_of_nums.items() if key > 1]
-        return mode
+        # Check if all the sum of valuesin the dictionary equal the length of the
+        # data input by the user. If not it returns the mode, else returns a 
+        # message saying no mode found. 
+        mode = dict((key, val) for key, val in dct_of_nums.items() if val > 1)
+        if len(mode) >= 1:
+            return mode
+        else:
+            return ('No value appeared more than once.')
     
     def standard_deviation(self):
         # Empty list for difference values
         diff_lst = []
         # Calculate mean of list
-        sd_m = Calculator(self.a_lst)
+        sd_m = Calculator(self._a_lst)
         sd_mean = sd_m.calc_mean()
     
         # This goes through user inputed values and subtracts the the mean from
         # each value and then squares it. 
-        for num in self.a_lst:
+        for num in self._a_lst:
             result = ((float(num) - sd_mean) ** 2.0)
             # Then rounds the result to two digits
             rounded_result = round(result, 2)
@@ -126,14 +121,24 @@ if __name__ == '__main__':
 		except ValueError:
 			print("Please enter an integer or a decimal.")
 
-	# Creates Calculator object to be used in rest of program.
-	usr_input = Calculator(lst_of_num)
+# Attempts to create a Calculator object and calculate based on user entered data
+try:
+    usr_input = Calculator(lst_of_num)    
+    print("\n")
+    print("You entered {} numbers".format(len(lst_of_num)))
+    print("The mean is: {}".format(str(round(usr_input.calc_mean(), 5))))
+    print("The median is: {}".format(str(round(usr_input.calc_median(), 5))))
+    mode_vals = usr_input.calc_mode()
+    if type(mode_vals) is not str:
+        print("Mode: These numbers were entered this many times: ")
+        for key in mode_vals:
+            print("{}: {}".format(int(key), mode_vals[key]))
+    else:
+        print("Mode: " + mode_vals)
+    #print("The mode is: {}".format(str(usr_input.calc_mode())))
+    print("The range is: {}".format(str(usr_input.calc_range())))
+    print("The standard deviation, (sigma) is: {}".format(str(round(usr_input.standard_deviation(), 5))))
+    print("Have a wonderful day!")
 
-	print("\n")
-	print("You entered {} numbers".format(len(lst_of_num)))
-	print("The mean is: {}".format(str(usr_input.calc_mean())))
-	print("The median is: {}".format(str(usr_input.calc_median())))
-	print("The mode is: {}".format(str(usr_input.calc_mode()).strip("[]")))
-	print("The range is: {}".format(str(usr_input.calc_range())))
-	print("The standard deviation, (sigma) is: {}".format(str(usr_input.standard_deviation())))
-	print("Have a wonderful day!")
+except ZeroDivisionError:
+    print('Please try again with integers or decimals.')
