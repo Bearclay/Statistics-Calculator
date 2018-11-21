@@ -19,7 +19,6 @@ Screenshots:
 This is the message presented to the user when the program is run:
 ![new_um](https://user-images.githubusercontent.com/22042867/48793798-1da78e00-ecc6-11e8-8fe8-660a37d00000.PNG)
 
-This is what it looks like after a user enters their data and presses enter. We also see the error message presented to the user if they don't enter an integer or float. This screenshot shows the number of times that multiple data points where entered. If each number appeared only once in the user data it will print out "No value appeared more than once.".
-![newest_ude](https://user-images.githubusercontent.com/22042867/48862458-6fb6e500-ed94-11e8-9827-b251c91ba59d.PNG)
-
+This is what it looks like after a user enters their data and presses enter. We also see the error message presented to the user if they don't enter an integer or float. This screenshot shows the calc_mode function printing the number of times that each data point appearedin the user entered data. If each number appeared only once in the user data it will print out "No value appeared more than once.".
+![ude_1121](https://user-images.githubusercontent.com/22042867/48862621-e358f200-ed94-11e8-9e84-b82feb475142.PNG)
 
